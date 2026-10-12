@@ -1,0 +1,13 @@
+{
+  "name": "borneapp-ocpp-server",
+  "version": "1.0.0",
+  "description": "Serveur OCPP 1.6J pour BorneApp : accepte les connexions WebSocket des bornes et relaie les événements vers l'API Laravel.",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js",
+    "simulate": "node simulator.js"
+  },
+  "dependencies": {
+    "ws": "^8.18.0"
+  }
+}

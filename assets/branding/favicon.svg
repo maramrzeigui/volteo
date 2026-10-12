@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256">
+  <defs>
+    <linearGradient id="fond" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#24242A"/><stop offset="1" stop-color="#0D0D10"/></linearGradient>
+    <radialGradient id="halo"><stop offset="0" stop-color="#F04257" stop-opacity="0.38"/><stop offset="1" stop-color="#F04257" stop-opacity="0"/></radialGradient>
+    <linearGradient id="arc" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF9AA6"/><stop offset="1" stop-color="#F04257"/></linearGradient>
+    <linearGradient id="eclair" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FF6B7E"/><stop offset="1" stop-color="#D0142C"/></linearGradient>
+    <filter id="ombre" filterUnits="userSpaceOnUse" x="0" y="0" width="256" height="256"><feDropShadow dx="0" dy="0" stdDeviation="14" flood-color="#F04257" flood-opacity="0.55"/></filter>
+  </defs>
+  
+  <rect x="8" y="8" width="240" height="240" rx="64" fill="url(#fond)"/><rect x="8.5" y="8.5" width="239" height="239" rx="63.5" fill="none" stroke="#FFFFFF" stroke-opacity="0.14"/>
+  <circle cx="128" cy="128" r="76.60799999999999" fill="url(#halo)"/>
+  <path d="M17.6 5.5 9 18h6.2l-1.4 8.5L22.6 14h-6.3l1.3-8.5Z" transform="translate(26.879999999999995 25.599999999999994) scale(6.4)" fill="url(#eclair)"/>
+</svg>

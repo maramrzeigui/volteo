@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="fond" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#24242A"/><stop offset="1" stop-color="#0D0D10"/></linearGradient>
+    <radialGradient id="halo"><stop offset="0" stop-color="#F04257" stop-opacity="0.38"/><stop offset="1" stop-color="#F04257" stop-opacity="0"/></radialGradient>
+    <linearGradient id="arc" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF9AA6"/><stop offset="1" stop-color="#F04257"/></linearGradient>
+    <linearGradient id="eclair" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FF6B7E"/><stop offset="1" stop-color="#D0142C"/></linearGradient>
+    <filter id="ombre" filterUnits="userSpaceOnUse" x="0" y="0" width="512" height="512"><feDropShadow dx="0" dy="0" stdDeviation="14" flood-color="#F04257" flood-opacity="0.55"/></filter>
+  </defs>
+  
+  <circle cx="256" cy="256" r="108.36" fill="none" stroke="#FFFFFF" stroke-opacity="0.35" stroke-width="9.03"/>
+  <circle cx="256" cy="256" r="108.36" fill="none" stroke="#FFFFFF" stroke-width="9.03" stroke-linecap="round" stroke-dasharray="490.20909111790553 680.8459598859799" transform="rotate(-90 256 256)"/>
+  <path d="M17.6 5.5 9 18h6.2l-1.4 8.5L22.6 14h-6.3l1.3-8.5Z" transform="translate(120.12 118.4) scale(8.6)" fill="#FFFFFF"/>
+</svg>
