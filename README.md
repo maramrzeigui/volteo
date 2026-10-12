@@ -119,5 +119,5 @@ npm install && npx expo start
 
 ## 👩‍💻 Auteure
 
-**Maram Rzeigui**, élève ingénieure à ESPRIT, spécialité SIM.
+**Maram Rzeigui**, élève ingénieure à ESPRIT, spécialité Systèmes d'Information Mobile (SIM).
 [LinkedIn](https://www.linkedin.com/in/maram-rzeigui/) · [GitHub](https://github.com/maramrzeigui)
