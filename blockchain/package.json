@@ -1,0 +1,27 @@
+{
+  "name": "volteo-blockchain",
+  "version": "1.0.0",
+  "description": "Smart contracts Volteo Chain : passeport NFT des batteries et registre des recharges",
+  "scripts": {
+    "test": "hardhat test",
+    "compiler": "hardhat compile",
+    "noeud": "hardhat node",
+    "deployer": "hardhat run scripts/deployer.js --network localhost",
+    "pont": "node pont.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "@nomicfoundation/hardhat-chai-matchers": "^2.1.2",
+    "@nomicfoundation/hardhat-ethers": "^3.1.3",
+    "@nomicfoundation/hardhat-network-helpers": "^1.1.2",
+    "chai": "^4.5.0",
+    "hardhat": "^2.22.17"
+  },
+  "dependencies": {
+    "@openzeppelin/contracts": "^5.1.0",
+    "ethers": "^6.13.4"
+  }
+}

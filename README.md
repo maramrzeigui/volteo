@@ -99,6 +99,7 @@ Volteo réunit en une seule plateforme les trois acteurs de la recharge :
 | `backend/` | API Laravel : bornes, recharges, wallet, paiements, stations, IA |
 | `backoffice/` | Application web : back-office et espace client |
 | `ocpp-server/` | Système central OCPP 1.6J et relais temps réel |
+| `blockchain/` | Volteo Chain : NFT des batteries et recharges certifiées ([détails](blockchain/README.md)) |
 
 ## 🚀 Lancer le projet
 

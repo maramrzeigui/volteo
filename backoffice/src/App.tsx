@@ -47,6 +47,8 @@ const AuditPage = page(() => import('./pages/Audit'))
 const ProfilPage = page(() => import('./pages/Profil'))
 const StationsPage = page(() => import('./pages/Stations'))
 const MaStationPage = page(() => import('./pages/MaStation'))
+const BatteriesPage = page(() => import('./pages/Batteries'))
+const PasseportPublicPage = page(() => import('./pages/PasseportPublic'))
 
 const EspaceAccueil = page(() => import('./pages/espace/Accueil'))
 const EspaceCarte = page(() => import('./pages/espace/CarteClient'))
@@ -62,6 +64,7 @@ const EspaceBornes = page(() => import('./pages/espace/Bornes'))
 const EspaceSimulateur = page(() => import('./pages/espace/Simulateur'))
 const OuvrirBorne = page(() => import('./pages/espace/OuvrirBorne'))
 const EspaceBorneFiche = page(() => import('./pages/espace/BorneFiche'))
+const EspaceBatterie = page(() => import('./pages/espace/BatterieClient'))
 
 function Chargement() {
   return (
@@ -92,6 +95,7 @@ function Accueil() {
   const { user, peut } = useAuth()
   if (!user) return <Navigate to="/connexion" replace />
   if (user.role === 'client') return <Navigate to="/espace" replace />
+  if (user.role === 'fabricant') return <Navigate to="/batteries" replace />
   // Station : son tableau de bord ; super-admin : la console des stations.
   const premiere = MENU_PERSONNEL.find((m) => entreeVisible(m, user, peut))
   return <Navigate to={premiere?.chemin ?? '/profil'} replace />
@@ -116,6 +120,8 @@ export default function App() {
         <Route path="/connexion" element={user ? <Navigate to="/" replace /> : <LoginPage />} />
         {/* Lien du QR code collé sur une borne */}
         <Route path="/b/:reference" element={<Protege client><OuvrirBorne /></Protege>} />
+        {/* Lien du QR code collé sur une batterie : passeport public (Volteo Chain) */}
+        <Route path="/batterie/:numSerie" element={<PasseportPublicPage />} />
         <Route path="/inscription" element={user ? <Navigate to="/" replace /> : <LoginPage />} />
         <Route path="/" element={<Accueil />} />
 
@@ -146,6 +152,7 @@ export default function App() {
           <Route path="/parametres" element={<Garde module="parametres"><ParametresPage /></Garde>} />
           <Route path="/audit" element={<Garde module="audit"><AuditPage /></Garde>} />
           <Route path="/stations" element={user?.role === 'super_admin' ? <StationsPage /> : <Navigate to="/" replace />} />
+          <Route path="/batteries" element={user?.role === 'fabricant' ? <BatteriesPage /> : <Navigate to="/" replace />} />
           <Route path="/ma-station" element={user?.station ? <MaStationPage /> : <Navigate to="/" replace />} />
           <Route path="/profil" element={<ProfilPage />} />
         </Route>
@@ -171,6 +178,7 @@ export default function App() {
           <Route path="vehicules" element={<EspaceVehicules />} />
           <Route path="badges" element={<EspaceBadges />} />
           <Route path="abonnement" element={<EspaceAbonnement />} />
+          <Route path="batterie" element={<EspaceBatterie />} />
           <Route path="profil" element={<ProfilPage />} />
         </Route>
 

@@ -26,6 +26,7 @@ import {
   UnorderedListOutlined,
   UserOutlined,
   ShopOutlined,
+  SafetyCertificateOutlined,
 } from '@ant-design/icons'
 import { useQuery } from '@tanstack/react-query'
 import { useAuth } from '../auth'
@@ -46,17 +47,19 @@ interface EntreeMenu {
   icone: ReactNode
   groupe: string
   /** Entrée réservée : « plateforme » (super-admin) ou « station » (personnel d'une station). */
-  reserve?: 'plateforme' | 'station'
+  reserve?: 'plateforme' | 'station' | 'fabricant'
 }
 
 /** Une entrée est visible si le module est autorisé et la réserve respectée. */
 export function entreeVisible(m: EntreeMenu, user: User | null, peut: (m: Module) => boolean) {
+  if (m.reserve === 'fabricant') return user?.role === 'fabricant'
   if (m.reserve === 'plateforme') return user?.role === 'super_admin'
   if (m.reserve === 'station') return !!user?.station
   return peut(m.module)
 }
 
 export const MENU_PERSONNEL: EntreeMenu[] = [
+  { chemin: '/batteries', module: 'dashboard', label: 'Mes batteries', icone: <SafetyCertificateOutlined />, groupe: 'Volteo Chain', reserve: 'fabricant' },
   { chemin: '/ma-station', module: 'dashboard', label: 'Ma station', icone: <ShopOutlined />, groupe: 'Pilotage', reserve: 'station' },
   { chemin: '/stations', module: 'dashboard', label: 'Stations clientes', icone: <ShopOutlined />, groupe: 'Plateforme', reserve: 'plateforme' },
   { chemin: '/tableau-de-bord', module: 'dashboard', label: 'Tableau de bord', icone: <DashboardOutlined />, groupe: 'Pilotage' },

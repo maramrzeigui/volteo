@@ -38,6 +38,9 @@ class SessionRechargeResource extends JsonResource
             'pourcentageBatterie' => $this->pourcentage_batterie,
             // paye, en_attente (solde insuffisant : paiement différé), rembourse…
             'paiementStatut' => $this->whenLoaded('paiement', fn () => $this->paiement?->statut),
+            // Volteo Chain : certifiee | refusee | echec (null : véhicule sans batterie certifiée).
+            'blockchainStatut' => $this->blockchain_statut,
+            'blockchainTx' => $this->blockchain_tx,
         ];
     }
 }

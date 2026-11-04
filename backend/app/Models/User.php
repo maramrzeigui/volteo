@@ -37,7 +37,7 @@ class User extends Authenticatable
 
     protected $attributes = ['actif' => true, 'role' => 'client', 'solde_wallet' => 0];
 
-    public const ROLES = ['super_admin', 'exploitant', 'operateur', 'technicien', 'service_client', 'finance', 'client'];
+    public const ROLES = ['super_admin', 'exploitant', 'operateur', 'technicien', 'service_client', 'finance', 'client', 'fabricant'];
 
     public const ROLES_PERSONNEL = ['super_admin', 'exploitant', 'operateur', 'technicien', 'service_client', 'finance'];
 

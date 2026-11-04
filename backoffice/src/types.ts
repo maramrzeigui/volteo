@@ -8,6 +8,7 @@ export type Role =
   | 'technicien'
   | 'service_client'
   | 'finance'
+  | 'fabricant'
 
 export type Module =
   | 'dashboard'

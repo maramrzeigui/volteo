@@ -573,3 +573,58 @@ export async function payerEnLigne(input: {
 export async function transactionEnLigne(reference: string): Promise<TransactionEnLigne> {
   return request(`/paiements/en-ligne/${reference}`);
 }
+
+// ---------------------------------------------------------------------------
+// Volteo Chain : batterie certifiée (NFT) et recharges inscrites dans la blockchain
+// ---------------------------------------------------------------------------
+
+export type RechargeCertifiee = {
+  sessionId: string;
+  borne: string;
+  energieKWh: number;
+  debut: string;
+  fin: string;
+  station: string;
+  nomStation: string;
+};
+
+export type PasseportBatterie = {
+  contrat: string;
+  tokenId: number;
+  proprietaire: string;
+  numSerie: string;
+  modele: string;
+  capaciteKWh: number;
+  vin: string;
+  soh: number;
+  energieTotaleKWh: number;
+  nbRecharges: number;
+  cycles: number;
+  recyclee: boolean;
+  dateFabrication: string;
+  recharges: RechargeCertifiee[];
+};
+
+export type BatterieCertifiee = {
+  id: number;
+  numSerie: string;
+  modele: string;
+  capaciteKwh: number;
+  vin: string | null;
+  tokenId: number | null;
+  vehicule: string | null;
+  passeport: PasseportBatterie | null;
+};
+
+export async function mesBatteries(): Promise<BatterieCertifiee[]> {
+  return (await request<{ data: BatterieCertifiee[] }>('/batteries')).data;
+}
+
+/** Activation : numéro de série (ou lien du QR code) ou VIN, avec le code de la facture. */
+export async function activerBatterie(saisie: { numSerie?: string; vin?: string; code: string; vehiculeId: number }) {
+  return request<{ data: BatterieCertifiee }>('/batteries/activer', { method: 'POST', body: JSON.stringify(saisie) });
+}
+
+export async function cederBatterie(id: number, email: string): Promise<string> {
+  return (await request<{ message: string }>(`/batteries/${id}/ceder`, { method: 'POST', body: JSON.stringify({ email }) })).message;
+}

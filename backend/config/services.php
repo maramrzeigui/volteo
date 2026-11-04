@@ -95,4 +95,11 @@ return [
         'web_client_id' => env('GOOGLE_WEB_CLIENT_ID'),
     ],
 
+
+    // Volteo Chain : pont local vers les smart contracts (blockchain/pont.js).
+    'blockchain' => [
+        'url' => env('BLOCKCHAIN_PONT_URL'),
+        'secret' => env('BLOCKCHAIN_PONT_SECRET', 'secret-blockchain-dev'),
+    ],
+
 ];
