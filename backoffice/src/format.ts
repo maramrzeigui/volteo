@@ -363,6 +363,7 @@ export const ROLE_LABELS: Record<Role, string> = {
   technicien: 'Technicien',
   service_client: 'Service client',
   finance: 'Finance',
+  fabricant: 'Fabricant (batteries)',
 }
 
 export const ROLE_COLORS: Record<Role, string> = {
@@ -373,6 +374,7 @@ export const ROLE_COLORS: Record<Role, string> = {
   technicien: 'warning',
   service_client: 'success',
   finance: 'warning',
+  fabricant: 'cyan',
 }
 
 export const ROLES_PERSONNEL: Role[] = [

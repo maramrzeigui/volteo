@@ -17,6 +17,7 @@ import {
   UnorderedListOutlined,
   UserOutlined,
   WalletOutlined,
+  SafetyCertificateOutlined,
 } from '@ant-design/icons'
 import { useQuery } from '@tanstack/react-query'
 import { espace } from '../api'
@@ -43,6 +44,7 @@ const COMPTE = [
   { key: '/espace/profil', icon: <UserOutlined />, label: 'Mon profil' },
   { key: '/espace/paiements', icon: <CreditCardOutlined />, label: 'Wallet et paiements' },
   { key: '/espace/vehicules', icon: <CarOutlined />, label: 'Mes véhicules' },
+  { key: '/espace/batterie', icon: <SafetyCertificateOutlined />, label: 'Ma batterie (blockchain)' },
   { key: '/espace/badges', icon: <IdcardOutlined />, label: 'Badges RFID' },
   { key: '/espace/simulateur', icon: <IdcardOutlined />, label: 'Recharger avec mon badge' },
   { key: '/espace/abonnement', icon: <CrownOutlined />, label: 'Abonnement' },

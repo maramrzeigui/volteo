@@ -327,6 +327,7 @@ class DatabaseSeeder extends Seeder
 
         // --- Stations clientes (multi-stations) ---
         $this->call(StationsDemoSeeder::class);
+        $this->call(VolteoChainSeeder::class);
 
         // --- Photos réelles des bornes de démonstration ---
         $this->call(PhotosBornesSeeder::class);

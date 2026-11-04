@@ -237,6 +237,12 @@ export default function CompteScreen() {
           onPress={() => router.push('/compte/vehicules')}
         />
         <Ligne
+          icone="shield-check-outline"
+          titre="Ma batterie certifiée"
+          detail="Passeport blockchain : NFT et recharges certifiées"
+          onPress={() => router.push('/compte/batterie')}
+        />
+        <Ligne
           icone="receipt-text-outline"
           titre="Paiements et factures"
           detail="Historique, factures PDF, paiements différés"

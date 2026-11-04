@@ -214,8 +214,8 @@ class AdminUserController extends Controller
 
     private function verifierAttributionRole(Request $request, string $role, ?User $cible = null): void
     {
-        // Seul un super administrateur crée ou modifie un super administrateur.
-        if (($role === 'super_admin' || $cible?->role === 'super_admin') && $request->user()->role !== 'super_admin') {
+        // Seul un super administrateur crée ou modifie un super administrateur ou un fabricant agréé.
+        if ((in_array($role, ['super_admin', 'fabricant'], true) || in_array($cible?->role, ['super_admin', 'fabricant'], true)) && $request->user()->role !== 'super_admin') {
             throw ValidationException::withMessages(['role' => ['Seul un super administrateur peut attribuer ce rôle.']]);
         }
         // Le personnel d'une station ne crée que du personnel de station (pas de compte plateforme).
@@ -246,7 +246,7 @@ class AdminUserController extends Controller
     /** Station d'un nouveau compte : celle de l'auteur pour le personnel de station. */
     private function stationAttribuee(Request $request, array $data): ?int
     {
-        if ($data['role'] === 'client' || $data['role'] === 'super_admin') {
+        if (in_array($data['role'], ['client', 'super_admin', 'fabricant'], true)) {
             return null;
         }
 

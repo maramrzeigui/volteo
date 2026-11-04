@@ -54,6 +54,7 @@ function RootNavigator() {
         {/* Espace « Compte » : en-tête natif avec retour vers l'onglet Compte. */}
         <Stack.Screen name="compte/vehicules" options={{ title: 'Mes véhicules', headerBackTitle: 'Compte' }} />
         <Stack.Screen name="compte/vehicule" options={{ title: 'Véhicule', headerBackTitle: 'Retour' }} />
+        <Stack.Screen name="compte/batterie" options={{ title: 'Ma batterie', headerBackTitle: 'Compte' }} />
         <Stack.Screen name="compte/paiements" options={{ title: 'Paiements et factures', headerBackTitle: 'Compte' }} />
         <Stack.Screen name="compte/abonnement" options={{ title: 'Abonnement', headerBackTitle: 'Compte' }} />
         <Stack.Screen name="compte/securite" options={{ title: 'Profil et sécurité', headerBackTitle: 'Compte' }} />

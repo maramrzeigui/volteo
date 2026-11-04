@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Jobs\CertifierRechargeBlockchain;
 use App\Models\BadgeRfid;
 use App\Models\Connecteur;
 use App\Models\Facture;
@@ -187,6 +188,9 @@ class GestionSessions
         if ($commanderBorne) {
             $this->ocpp->remoteStop($session->borne, $session->id);
         }
+
+        // Volteo Chain : la recharge est inscrite dans la blockchain après la réponse (batterie certifiée seulement).
+        CertifierRechargeBlockchain::dispatchAfterResponse($session->id);
 
         return $session->load(['borne', 'connecteur']);
     }

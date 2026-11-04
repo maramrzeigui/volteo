@@ -20,9 +20,11 @@ use App\Http\Controllers\Api\Admin\AdminVehiculeController;
 use App\Http\Controllers\Api\Admin\MessagerieStationController;
 use App\Http\Controllers\Api\AssistantController;
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\BatterieController;
 use App\Http\Controllers\Api\BorneController;
 use App\Http\Controllers\Api\ClientController;
 use App\Http\Controllers\Api\FactureController;
+use App\Http\Controllers\Api\FabricantBatterieController;
 use App\Http\Controllers\Api\FavoriController;
 use App\Http\Controllers\Api\Internal\OcppEventController;
 use App\Http\Controllers\Api\PaiementEnLigneController;
@@ -44,6 +46,9 @@ Route::prefix('v1')->group(function () {
         Route::post('/auth/reset', [AuthController::class, 'resetPassword']);
     });
     Route::get('/plateforme', [AdminParametreController::class, 'public']);
+    // Volteo Chain : passeport public d'une batterie, lu dans la blockchain (QR code de la batterie).
+    Route::get('/batteries/{numSerie}/passeport', [BatterieController::class, 'passeport'])
+        ->where('numSerie', '.*')->middleware('throttle:60,1');
 
     // Paiement en ligne : notification du prestataire (Flouci, Konnect, ClicToPay), revérifiée auprès de lui.
     Route::match(['get', 'post'], '/paiements/webhook/{passerelle}', [PaiementEnLigneController::class, 'webhook'])
@@ -112,9 +117,22 @@ Route::prefix('v1')->group(function () {
         Route::get('/assistant/conversations/{id}', [AssistantController::class, 'conversation']);
         Route::delete('/assistant/conversations/{id}', [AssistantController::class, 'supprimer']);
 
+        // Volteo Chain : batterie certifiée du conducteur (NFT).
+        Route::get('/batteries', [BatterieController::class, 'index']);
+        Route::post('/batteries/activer', [BatterieController::class, 'activer'])->middleware('throttle:20,1');
+        Route::post('/batteries/{batterie}/ceder', [BatterieController::class, 'ceder'])->middleware('throttle:20,1');
+
         Route::post('/wallet/topup', [WalletController::class, 'topup']);
         Route::get('/wallet/paiements', [WalletController::class, 'paiements']);
         Route::post('/paiements/{paiement}/regler', [WalletController::class, 'regler']);
+    });
+
+    // --- Espace fabricant : création des NFT de batteries (Volteo Chain) ---
+    Route::middleware(['auth:sanctum', 'role:fabricant'])->prefix('fabricant')->group(function () {
+        Route::get('/batteries', [FabricantBatterieController::class, 'index']);
+        Route::post('/batteries', [FabricantBatterieController::class, 'store'])->middleware('throttle:30,1');
+        Route::get('/batteries/{batterie}', [FabricantBatterieController::class, 'show']);
+        Route::post('/batteries/{batterie}/reessayer', [FabricantBatterieController::class, 'reessayer']);
     });
 
     // --- Back-office : RBAC par module (§7), lecture pour GET, écriture sinon ---
