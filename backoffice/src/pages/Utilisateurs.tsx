@@ -35,7 +35,7 @@ export function UserForm({ user, ouvert, onFermer }: { user: AdminUser | null; o
   })
 
   const roles = (Object.keys(ROLE_LABELS) as Role[])
-    .filter((r) => r !== 'super_admin' || moi?.role === 'super_admin')
+    .filter((r) => (r !== 'super_admin' && r !== 'fabricant') || moi?.role === 'super_admin')
     .filter((r) => !moi?.station || r !== 'client')
   const roleChoisi = Form.useWatch('role', form)
   const { data: stations } = useQuery({ queryKey: ['stations'], queryFn: fetchStations, enabled: ouvert && moi?.role === 'super_admin' })
@@ -53,7 +53,7 @@ export function UserForm({ user, ouvert, onFermer }: { user: AdminUser | null; o
               <Select disabled={user?.id === moi?.id} options={roles.map((r) => ({ value: r, label: ROLE_LABELS[r] }))} />
             </Form.Item>
             {/* Super-admin : rattacher le personnel à une station cliente (vide = personnel Volteo). */}
-            {moi?.role === 'super_admin' && roleChoisi && !['client', 'super_admin'].includes(roleChoisi) && (
+            {moi?.role === 'super_admin' && roleChoisi && !['client', 'super_admin', 'fabricant'].includes(roleChoisi) && (
               <Form.Item name="stationId" label="Station">
                 <Select allowClear placeholder="Personnel Volteo (toutes les stations)" options={(stations?.stations ?? []).map((st) => ({ value: st.id, label: st.nom }))} />
               </Form.Item>
